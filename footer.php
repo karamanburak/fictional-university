@@ -12,33 +12,33 @@
             <div class="site-footer__col-two">
               <h3 class="headline headline--small">Explore</h3>
               <nav class="nav-list">
-                  <ul>
-                  <li <?php if(is_page("about-us") or wp_get_post_parent_id(0) == 12) echo "class='current-menu-item'" ?>><a href="<?php echo site_url("/about-us") ?>">About Us</a></li>
+                <ul>
+                  <li <?php if (is_page("about-us") or wp_get_post_parent_id(0) == 12) echo "class='current-menu-item'" ?>><a href="<?php echo site_url("/about-us") ?>">About Us</a></li>
                   <li><a href="#">Programs</a></li>
                   <li><a href="#">Events</a></li>
                   <li><a href="#">Campuses</a></li>
                 </ul>
-              <!-- <?php 
-                 wp_nav_menu(array(
-                  "theme_location" => "footerLocationOne"
-                 ));
-              ?> -->
+                <!-- <?php
+                      wp_nav_menu(array(
+                        "theme_location" => "footerLocationOne"
+                      ));
+                      ?> -->
               </nav>
             </div>
 
             <div class="site-footer__col-three">
               <h3 class="headline headline--small">Learn</h3>
               <nav class="nav-list">
-                  <!-- <ul>
+                <!-- <ul>
                   <li><a href="#">Legal</a></li>
                   <li><a href="<?php echo site_url("/privacy-policy") ?>">Privacy</a></li>
                   <li><a href="#">Careers</a></li>
                 </ul> -->
-              <?php 
-                 wp_nav_menu(array(
+                <?php
+                wp_nav_menu(array(
                   "theme_location" => "footerLocationTwo"
-                 ));
-              ?>
+                ));
+                ?>
               </nav>
             </div>
           </div>
@@ -68,6 +68,18 @@
         </div>
       </div>
     </footer>
-<?php wp_footer(); ?>
-</body>
-</html>
+
+    <div class="search-overlay">
+      <div class="search-overlay__top">
+        <div calss="container">
+          <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+          <i class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
+          <input type="text" class="search-term" placeholder="What are you looking for?" id="search-term">
+        </div>
+      </div>
+    </div>
+
+    <?php wp_footer(); ?>
+    </body>
+
+    </html>
