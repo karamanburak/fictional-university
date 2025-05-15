@@ -15,19 +15,19 @@ while (have_posts()) {
     <div class="generic-content"><?php the_content(); ?></div>
 
     <?php
-    $relatedProfessors = new WP_Query(array(
+    $relatedProfessors = new WP_Query([
       'posts_per_page' => -1,
       'post_type' => 'professor',
       'orderby' => 'title',
       'order' => 'ASC',
-      'meta_query' => array(
-        array(
+      'meta_query' => [
+        [
           'key' => 'related_programs',
           'compare' => 'LIKE',
           'value' => '"' . get_the_ID() . '"'
-        )
-      )
-    ));
+        ]
+      ]
+    ]);
 
     if ($relatedProfessors->have_posts()) {
       echo '<hr class="section-break">';
@@ -42,33 +42,33 @@ while (have_posts()) {
             <span class="professor-card__name"> <?php the_title(); ?> </span>
           </a>
         </li>
-    <?php }
+      <?php }
       echo '</ul>';
     }
 
     wp_reset_postdata();
 
     $today = date('Ymd');
-    $homepageEvents = new WP_Query(array(
+    $homepageEvents = new WP_Query([
       'posts_per_page' => 2,
       'post_type' => 'event',
       'meta_key' => 'event_date',
       'orderby' => 'meta_value_num',
       'order' => 'ASC',
-      'meta_query' => array(
-        array(
+      'meta_query' => [
+        [
           'key' => 'event_date',
           'compare' => '>=',
           'value' => $today,
           'type' => 'numeric'
-        ),
-        array(
+        ],
+        [
           'key' => 'related_programs',
           'compare' => 'LIKE',
           'value' => '"' . get_the_ID() . '"'
-        )
-      )
-    ));
+        ]
+      ]
+    ]);
 
     if ($homepageEvents->have_posts()) {
       echo '<hr class="section-break">';
@@ -79,7 +79,19 @@ while (have_posts()) {
         get_template_part("template-parts/content-event");
       }
     }
-    
+    wp_reset_postdata();
+    $relatedCampuses = get_field("related_campus");
+
+    if ($relatedCampuses) {
+      echo '<h2 class="headline headline--medium">' . get_the_title() . ' is Available At These Campuses:</h2>';
+
+      echo '<ul class=""min-list link-list>';
+      foreach ($relatedCampuses as $campus) {
+      ?> <li><a href="<?= get_the_permalink($campus); ?>"><?= get_the_title($campus); ?></a></li>
+    <?php
+      }
+      echo '</ul>';
+    }
     ?>
 
   </div>
