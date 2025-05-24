@@ -4121,6 +4121,7 @@ class MyNotes {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-note").on("click", this.deleteNote);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-note").on("click", this.editNote.bind(this));
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".update-note").on("click", this.updateNote.bind(this));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".submit-note").on("click", this.createNote.bind(this));
   }
 
   // Methods will go here
@@ -4178,6 +4179,31 @@ class MyNotes {
       data: ourUpdatedPost,
       success: response => {
         this.makeNoteReadOnly(thisNote);
+        console.log("Congrats..");
+        console.log(response);
+      },
+      error: response => {
+        console.log("sorry");
+        console.log(response);
+      }
+    });
+  }
+  createNote(e) {
+    let ourNewPost = {
+      "title": jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-title").val(),
+      "content": jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-body").val(),
+      "status": "publish"
+    };
+    jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
+      beforeSend: xhr => {
+        xhr.setRequestHeader("X-WP-Nonce", universityData.nonce);
+      },
+      url: universityData.root_url + "/wp-json/wp/v2/note/",
+      type: "POST",
+      data: ourNewPost,
+      success: response => {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-title, .new-note-body").val();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('<li>Imagine real data here</li>').prependTo("#my-notes").hide().slideDown();
         console.log("Congrats..");
         console.log(response);
       },
