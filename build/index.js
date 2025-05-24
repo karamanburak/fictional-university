@@ -4118,9 +4118,9 @@ class MyNotes {
     this.events();
   }
   events() {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".delete-note").on("click", this.deleteNote);
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".edit-note").on("click", this.editNote.bind(this));
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".update-note").on("click", this.updateNote.bind(this));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#my-notes").on("click", ".delete-note", this.deleteNote);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#my-notes").on("click", ".edit-note", this.editNote.bind(this));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#my-notes").on("click", ".update-note", this.updateNote.bind(this));
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".submit-note").on("click", this.createNote.bind(this));
   }
 
@@ -4167,8 +4167,8 @@ class MyNotes {
   updateNote(e) {
     let thisNote = jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target).parents("li");
     let ourUpdatedPost = {
-      "title": thisNote.find(".note-title-field").val(),
-      "content": thisNote.find(".note-body-field").val()
+      title: thisNote.find(".note-title-field").val(),
+      content: thisNote.find(".note-body-field").val()
     };
     jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
       beforeSend: xhr => {
@@ -4190,9 +4190,9 @@ class MyNotes {
   }
   createNote(e) {
     let ourNewPost = {
-      "title": jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-title").val(),
-      "content": jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-body").val(),
-      "status": "publish"
+      title: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-title").val(),
+      content: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-body").val(),
+      status: "private"
     };
     jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
       beforeSend: xhr => {
@@ -4203,7 +4203,15 @@ class MyNotes {
       data: ourNewPost,
       success: response => {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-title, .new-note-body").val();
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('<li>Imagine real data here</li>').prependTo("#my-notes").hide().slideDown();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(`
+				<li data-id="${response.id}">
+                    <input readonly class="note-title-field" type="text" value="${response.title.raw}">
+                    <span class="edit-note"><i clas="fa fa-pencil" aria-hidden="true"></i>Edit</span>
+                    <span class="delete-note"><i clas="fa fa-trash-o" aria-hidden="true"></i>Delete</span>
+                    <textarea readonly class="note-body-field">${response.content.raw}</textarea>
+                    <span class="update-note btn btn--blue btn--small"><i clas="fa fa-arrow-right" aria-hidden="true"></i>Save</span>
+                </li>
+					`).prependTo("#my-notes").hide().slideDown();
         console.log("Congrats..");
         console.log(response);
       },
