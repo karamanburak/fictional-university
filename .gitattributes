@@ -1,0 +1,9 @@
+*.php linguist-language=PHP
+*.js linguist-detectable=false
+*.jsx linguist-detectable=false
+*.ts linguist-detectable=false
+*.tsx linguist-detectable=false
+*.json linguist-detectable=false
+*.lock linguist-detectable=false
+node_modules/* linguist-vendored=true
+build/* linguist-vendored=true 

@@ -16,7 +16,7 @@ class Like {
         if (currentLikeBox.data("exists") == "yes") {
             this.deleteLike();
         } else {
-            this.createLike()
+            this.createLike();
         }
     }
 
