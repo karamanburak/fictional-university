@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Our Test Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-01 12:35+0000\n"
+"PO-Revision-Date: 2025-06-01 12:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: Türkçe\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.1; php-8.2.23\n"
+"X-Domain: wcpdomain"
+
+#. Description of the plugin
+msgid "A truly amazing plugin."
+msgstr ""
+
+#. Author of the plugin
+msgid "Burak"
+msgstr ""
+
+#: our-first-unique-plugin.php:67
+msgid "characters"
+msgstr "karakter"
+
+#. Author URI of the plugin
+msgid "https://karamanburak.com"
+msgstr ""
+
+#. Name of the plugin
+msgid "Our Test Plugin"
+msgstr ""
+
+#: our-first-unique-plugin.php:64 our-first-unique-plugin.php:67
+msgid "This post has"
+msgstr "Bu gönderi "
+
+#: our-first-unique-plugin.php:126
+msgid "Word Count"
+msgstr "Kelime sayisi"
+
+#: our-first-unique-plugin.php:64
+msgid "words"
+msgstr "kelime"
