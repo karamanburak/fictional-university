@@ -1,7 +1,7 @@
 <?php 
 
 /*
-Plugin Name: Our Word Filter Plugin
+Plugin Name: Word Filter Plugin
 Description: Replaces a list of words.
 Version: 1.0
 Author: Burak
@@ -10,7 +10,7 @@ Author URI: https://karamanburak.com
 
 if ( ! defined( 'ABSPATH' )) exit; // Exit if accessed directly
 
-class OurWordFilterPlugin {
+class WordFilterPlugin {
     function __construct() {
         add_action("admin_menu", [$this, "ourMenu"]);
         add_action("admin_init", [$this, "ourSettings"]);
@@ -128,4 +128,4 @@ class OurWordFilterPlugin {
 
 }
 
-$ourWordFilterPlugin = new OurWordFilterPlugin();
+$wordFilterPlugin = new WordFilterPlugin();
